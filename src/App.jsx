@@ -3,6 +3,7 @@ import "./App.css";
 import ImageList from "./components/ImageList/ImageList";
 import LoginPanel from "./components/LoginPanel/LoginPanel";
 import { ImageContext } from "./contexts/image-context";
+import { UserContext } from "./contexts/user-context";
 
 export function App() {
   const [isLarge, setIsLarge] = useState(false);
@@ -11,7 +12,14 @@ export function App() {
   const imageSize = isLarge ? 150 : 100;
   return (
     <>
-      <LoginPanel currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <UserContext.Provider
+        value={{
+          currentUser: currentUser,
+          setCurrentUser: setCurrentUser,
+        }}
+      >
+        <LoginPanel />
+      </UserContext.Provider>
       <label>
         <input
           type="checkbox"

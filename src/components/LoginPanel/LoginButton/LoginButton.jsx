@@ -1,13 +1,17 @@
+import { useContext } from "react";
 import Button from "./Button/Button";
+import { UserContext } from "../../../contexts/user-context";
 
-function LoginButton({ currentUser, setCurrentUser }) {
-  if (currentUser !== null) {
+function LoginButton() {
+  const ctx = useContext(UserContext);
+
+  if (ctx.currentUser !== null) {
     return (
       <div>
-        <p>You logged in as {currentUser.name}.</p>
+        <p>You logged in as {ctx.currentUser.name}.</p>
         <Button
           onClick={() => {
-            setCurrentUser(null);
+            ctx.setCurrentUser(null);
           }}
         >
           Logout
@@ -19,7 +23,7 @@ function LoginButton({ currentUser, setCurrentUser }) {
   return (
     <Button
       onClick={() => {
-        setCurrentUser({ name: "FutureSkills" });
+        ctx.setCurrentUser({ name: "FutureSkills" });
       }}
     >
       Log in as FutureSkills
