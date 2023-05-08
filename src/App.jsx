@@ -11,30 +11,29 @@ export function App() {
 
   const imageSize = isLarge ? 150 : 100;
   return (
-    <>
-      <UserContext.Provider
-        value={{
-          currentUser: currentUser,
-          setCurrentUser: setCurrentUser,
-        }}
-      >
-        <LoginPanel />
-      </UserContext.Provider>
-      <label>
-        <input
-          type="checkbox"
-          checked={isLarge}
-          onChange={(e) => {
-            setIsLarge(e.target.checked);
-          }}
-        />
-        Use large images
-      </label>
-      <hr />
+    <UserContext.Provider
+      value={{
+        currentUser: currentUser,
+        setCurrentUser: setCurrentUser,
+      }}
+    >
       <ImageContext.Provider value={imageSize}>
+        <LoginPanel />
+        <label>
+          <input
+            type="checkbox"
+            checked={isLarge}
+            onChange={(e) => {
+              setIsLarge(e.target.checked);
+            }}
+          />
+          Use large images
+        </label>
+        <hr />
+
         <ImageList imageSize={imageSize} />
       </ImageContext.Provider>
-    </>
+    </UserContext.Provider>
   );
 }
 
