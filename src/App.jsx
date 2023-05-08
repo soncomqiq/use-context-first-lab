@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import ImageList from "./components/ImageList/ImageList";
 import LoginPanel from "./components/LoginPanel/LoginPanel";
+import { ImageContext } from "./contexts/image-context";
 
 export function App() {
   const [isLarge, setIsLarge] = useState(false);
@@ -22,7 +23,9 @@ export function App() {
         Use large images
       </label>
       <hr />
-      <ImageList imageSize={imageSize} />
+      <ImageContext.Provider value={imageSize}>
+        <ImageList imageSize={imageSize} />
+      </ImageContext.Provider>
     </>
   );
 }

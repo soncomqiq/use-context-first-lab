@@ -1,7 +1,11 @@
 import "./PlaceImage.css";
 import { getImageUrl } from "../../../../utils";
+import { useContext } from "react";
+import { ImageContext } from "../../../../contexts/image-context";
 
-function PlaceImage({ place, imageSize }) {
+function PlaceImage({ place }) {
+  const imageSize = useContext(ImageContext);
+
   return (
     <img
       src={getImageUrl(place)}
